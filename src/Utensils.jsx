@@ -16,25 +16,25 @@ export default function PotluckUtensils() {
     for (let i = 0; i < utensils.length; i++) {
         utensilsDisplay.push(
             <li key={utensils[i].id}>
-                {utensils[i].utensil_name} by {utensils[i].guest_name} quantity {utensils[i].quantity} ( {utensils[i].item_type} )
+                {utensils[i].item_name} by {utensils[i].guest_name} quantity {utensils[i].quantity} ( {utensils[i].item_type} )
             </li>
         );
     }
 
     async function handleAddUtensils(event) {
         event.preventDefault();
-        console.log("handle add beverage submitted")
-        const beverageName = event.target.elements.beverageName.value
+        console.log("handle add utensil submitted")
+        const itemName = event.target.elements.itemName.value
         const guestName = event.target.elements.guestName.value
         const quantity = event.target.elements.quantity.value
-        const typeOfDrink = event.target.elements.itemType.value
+        const itemType = event.target.elements.itemType.value
         console.log(event)
 
         const newUtensil = {
-            beverage_name: beverageName,
+            item_name: itemName,
             guest_name: guestName,
             quantity: parseInt(quantity),
-            item_Type: itemType
+            item_type: itemType
         }
 
         console.log(newUtensil)
@@ -48,7 +48,7 @@ export default function PotluckUtensils() {
         const error = response.error
         setUtensils(data)
 
-        event.target.elements.utensilName.value = ""
+        event.target.elements.itemName.value = ""
         event.target.elements.guestName.value = ""
         event.target.elements.quantity.value = ""
         event.target.elements.itemType.value = ""
@@ -71,7 +71,7 @@ export default function PotluckUtensils() {
             <div>
                 <form onSubmit={handleAddUtensils}>
                     <label>
-                        Utensils: <input type="text" name="UtensilName" />
+                        Utensils: <input type="text" name="itemName" />
                     </label>
                     <br />
                     <label>
